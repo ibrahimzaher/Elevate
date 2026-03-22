@@ -274,5 +274,10 @@
     "UPDATE_SUCCESS": "Product Updated Successfully",
     "REMOVE_SUCCESS": "Product Removed Successfully",
     "CLEAR_SUCCESS": "Clear Cart Successfully"
+  },
+  "NOT_FOUND": {
+    "TITLE": "Lost in the Gift Shop?",
+    "DESCRIPTION": "The page you're looking for has moved or no longer exists. Let's get you back to finding the perfect gift.",
+    "BACK_TO_HOME": "Back to Home"
   }
 }

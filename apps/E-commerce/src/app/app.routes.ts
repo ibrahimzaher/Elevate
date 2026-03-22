@@ -18,4 +18,11 @@ export const appRoutes: Route[] = [
     redirectTo: 'auth',
     pathMatch: 'full',
   },
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./feature/not-found/not-found.component').then(
+        (m) => m.NotFoundComponent
+      ),
+  },
 ];
