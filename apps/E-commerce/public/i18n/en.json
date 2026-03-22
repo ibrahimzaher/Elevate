@@ -252,6 +252,7 @@
     "REVIEW_TITLE_PLACEHOLDER": "Enter review title",
     "REVIEW": "Review",
     "REVIEW_PLACEHOLDER": "What do you think of this product?",
+    "LOGIN_TO_REVIEW": "Please login to be able to review the product",
     "ADD_REVIEW": "Add Review"
   },
   "RELATED_PRODUCTS": {

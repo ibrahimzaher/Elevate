@@ -1,10 +1,12 @@
 import { DatePipe } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { Component, inject, input, signal } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 import { HeadingTitleComponent } from '../../../../shared/components/ui/heading/heading-title.component';
 import { Review } from '../../../products/interfaces/review';
 import { TextInputComponent } from '@elevate/reusable-input';
 import { ButtonComponent } from '@elevate/reusable-ui';
+import { AuthRepo, AuthState } from '@elevate/auth-domain';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-product-reviews',
@@ -14,11 +16,28 @@ import { ButtonComponent } from '@elevate/reusable-ui';
     TextInputComponent,
     ButtonComponent,
     TranslateModule,
+    RouterLink,
   ],
   templateUrl: './product-reviews.component.html',
 })
 export class ProductReviewsComponent {
+  private readonly authState = inject(AuthState);
+  readonly user = this.authState.isAuthenticated;
   reviews = input.required<Review[]>();
+  selectedRating = signal(0);
+  hoveredRating = signal(0);
+
+  setRating(rating: number) {
+    this.selectedRating.set(rating);
+  }
+
+  setHoveredRating(rating: number) {
+    this.hoveredRating.set(rating);
+  }
+
+  clearHoveredRating() {
+    this.hoveredRating.set(0);
+  }
 
   getStars(rating: number): number[] {
     return Array(Math.floor(rating)).fill(0);
