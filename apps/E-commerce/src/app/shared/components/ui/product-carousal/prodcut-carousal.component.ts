@@ -29,6 +29,8 @@ export class ProdcutCarousalComponent {
   readonly previewProducts = computed(() =>
     this.products().slice(0, Math.max(this.numVisible(), 1))
   );
+  readonly showNavigators = computed(() => this.products().length > 4);
+  readonly useCarousel = computed(() => this.products().length >= 4);
 
   responsiveOptions = input<any[]>([
     { breakpoint: '1400px', numVisible: 4, numScroll: 1 },
