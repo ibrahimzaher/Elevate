@@ -1,12 +1,14 @@
 {
   "version": 2,
+  "framework": "angular",
   "buildCommand": "npx ng build E-commerce",
   "installCommand": "npm install --legacy-peer-deps",
-  "outputDirectory": "dist/apps/E-commerce/browser",
+  "outputDirectory": "dist/apps/E-commerce",
+  "cleanUrls": true,
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/"
+      "destination": "/server/main.server.mjs"
     }
   ]
 }
