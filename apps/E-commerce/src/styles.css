@@ -298,7 +298,6 @@
   align-items: center !important;
   position: relative !important;
   gap: 10px !important;
-  width: 447px !important;
   min-height: 53px !important;
   padding: 16px !important;
   border-radius: 10px !important;
@@ -308,6 +307,8 @@
   font-weight: 500;
   box-shadow: 0 15px 30px -3px rgba(0, 0, 0, 0.1) !important;
   transition: all 0.2s ease-in-out;
+  width: calc(100vw - 32px) !important;
+  max-width: 447px !important;
 }
 
 #toast-container > div .toast-message {
