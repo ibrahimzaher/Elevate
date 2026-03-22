@@ -34,7 +34,6 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
       if (isTokenError) {
         message = 'Your session has expired. Please log in again.';
         auth.cleanData();
-        router.navigateByUrl('/login', { replaceUrl: true });
       }
 
       if (!req.context.get(SKIP_ERROR_TOAST)) {

@@ -84,7 +84,7 @@
           class="hover:text-maroon-400 cursor-pointer relative"
           (click)="navigateToCart($event)"
           routerLinkActive="text-maroon-400"
-          routerLink="/shopping-cart"
+          [routerLink]="user() ? '/shopping-cart' : '/'"
           [routerLinkActiveOptions]="{ exact: true }"
         >
           <lucide-icon
