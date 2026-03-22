@@ -1,21 +1,12 @@
 {
-  "framework": "angular",
+  "version": 2,
   "buildCommand": "npx ng build E-commerce",
   "installCommand": "npm install --legacy-peer-deps",
-  "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist/apps/E-commerce/browser"
-      }
-    }
-  ],
+  "outputDirectory": "dist/apps/E-commerce/browser",
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "destination": "/"
     }
   ]
 }
