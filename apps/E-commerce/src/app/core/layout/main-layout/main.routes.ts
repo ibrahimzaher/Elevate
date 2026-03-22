@@ -15,17 +15,22 @@ export const mainRoutes: Routes = [
       },
       {
         path: 'products',
-        loadComponent: () =>
-          import('../../../feature/products/products.component').then(
-            (m) => m.ProductsComponent
-          ),
-      },
-      {
-        path: 'products-details/:id',
-        loadComponent: () =>
-          import('../../../feature/product-details/product.details').then(
-            (m) => m.ProductDetailsComponent
-          ),
+        children: [
+          {
+            path: '',
+            loadComponent: () =>
+              import('../../../feature/products/products.component').then(
+                (m) => m.ProductsComponent
+              ),
+          },
+          {
+            path: ':id',
+            loadComponent: () =>
+              import('../../../feature/product-details/product.details').then(
+                (m) => m.ProductDetailsComponent
+              ),
+          },
+        ],
       },
       {
         path: 'shopping-cart',

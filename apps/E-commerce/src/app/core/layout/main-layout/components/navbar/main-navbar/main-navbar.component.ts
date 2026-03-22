@@ -25,7 +25,12 @@ export class MainNavbarComponent {
   };
   items = [
     { label: 'NAVBAR.HOME', icon: 'pi pi-home', routerLink: '/home' },
-    { label: 'NAVBAR.PRODUCTS', icon: 'pi pi-box', routerLink: '/products' },
+    {
+      label: 'NAVBAR.PRODUCTS',
+      icon: 'pi pi-box',
+      routerLink: '/products',
+      exact: false,
+    },
     {
       label: 'NAVBAR.CATEGORIES',
       icon: 'pi pi-list',

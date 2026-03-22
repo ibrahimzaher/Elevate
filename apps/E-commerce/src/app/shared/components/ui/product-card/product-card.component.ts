@@ -68,6 +68,6 @@ export class ProductCardComponent {
   }
 
   showProductDetails(): void {
-    this.router.navigate(['products-details', this.product()._id]);
+    this.router.navigate(['/products', this.product()._id]);
   }
 }
