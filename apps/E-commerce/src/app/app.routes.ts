@@ -19,10 +19,14 @@ export const appRoutes: Route[] = [
     pathMatch: 'full',
   },
   {
-    path: '**',
+    path: '404',
     loadComponent: () =>
       import('./feature/not-found/not-found.component').then(
         (m) => m.NotFoundComponent
       ),
+  },
+  {
+    path: '**',
+    redirectTo: '404',
   },
 ];

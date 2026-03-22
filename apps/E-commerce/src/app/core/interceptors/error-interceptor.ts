@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AuthRepo } from '@elevate/auth-domain';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, throwError } from 'rxjs';
+import { SKIP_ERROR_TOAST } from '../constants/http-context';
 
 export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const toast = inject(ToastrService);
@@ -36,7 +37,9 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
         router.navigateByUrl('/login', { replaceUrl: true });
       }
 
-      toast.error(message);
+      if (!req.context.get(SKIP_ERROR_TOAST)) {
+        toast.error(message);
+      }
 
       return throwError(() => ({ message, status: err.status }));
     })

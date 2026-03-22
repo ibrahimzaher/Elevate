@@ -5,13 +5,13 @@ import { TranslateModule } from '@ngx-translate/core';
 import { forkJoin } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { Product } from '../../shared/components/ui/product-card/interface/product';
+import { CartService } from '../cart/services/cart.service';
 import { Review } from '../products/interfaces/review';
 import { ProductsService } from '../products/services/product';
 import { ProductGalleryComponent } from './components/product-gallery/product-gallery.component';
 import { ProductInfoComponent } from './components/product-info/product-info.component';
 import { ProductReviewsComponent } from './components/product-reviews/product-reviews.component';
 import { RelatedProductComponent } from './components/related-product/related-product.component';
-import { CartService } from '../cart/services/cart.service';
 
 @Component({
   selector: 'app-product-details',
@@ -80,6 +80,9 @@ export class ProductDetailsComponent implements OnInit {
           this.reviews.set(reviews.reviews || []);
           this.relatedProducts.set(related.relatedProducts || []);
         },
+        error: () => {
+          this.router.navigate(['/404'], { skipLocationChange: true });
+        },
       });
   }
 
@@ -87,7 +90,7 @@ export class ProductDetailsComponent implements OnInit {
     this.router.navigate([`/products`]);
   }
 
-  handleToggleWishlist(id: string): void {
+  handleToggleWishlist(_id: string): void {
     //Implement Add to wishlist
   }
 
