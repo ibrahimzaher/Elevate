@@ -1,0 +1,158 @@
+@reference "tailwindcss";
+
+/* ── Photo Section ── */
+.photo-section {
+  @apply flex items-center gap-10 mb-12;
+}
+
+.photo-avatar-container {
+  @apply relative w-28 h-28 cursor-pointer shrink-0;
+}
+
+.avatar-img {
+  @apply w-full h-full object-cover rounded-full shadow-md;
+}
+
+.camera-badge {
+  @apply absolute bottom-0 right-0 w-9 h-9 bg-white rounded-full
+         flex items-center justify-center shadow-xl border border-gray-100
+         text-gray-500 hover:text-[#8B1A2B] transition-all;
+}
+
+/* Logical property for RTL support */
+[dir='rtl'] .camera-badge {
+  @apply right-auto left-0;
+}
+
+.camera-badge i {
+  @apply text-[16px];
+}
+
+.photo-info {
+  @apply flex flex-col gap-2;
+}
+
+.photo-title {
+  @apply text-xl font-bold text-gray-900;
+}
+
+.photo-desc {
+  @apply text-sm text-gray-400 max-w-sm leading-relaxed font-medium;
+}
+
+/* ── Alerts ── */
+.alert {
+  @apply mb-10 px-6 py-4 rounded-2xl flex items-center gap-4 text-[15px] font-bold;
+}
+
+.alert-success {
+  @apply bg-green-50 text-green-700 border border-green-100;
+}
+
+.alert-error {
+  @apply bg-red-50 text-red-600 border border-red-100;
+}
+
+/* ── Form ── */
+.details-form {
+  @apply flex flex-col gap-10;
+}
+
+.form-row {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-10;
+}
+
+.form-field {
+  @apply flex flex-col;
+}
+
+.field-label {
+  @apply text-[14px] font-bold text-gray-400 mb-3;
+}
+
+.field-input {
+  @apply w-full pb-3 border-b border-gray-100 text-[17px] text-gray-900 font-semibold
+         outline-none focus:border-[#8B1A2B] transition-colors bg-transparent
+         placeholder:text-gray-200;
+}
+
+.select-wrapper {
+  @apply relative w-full;
+}
+
+.field-select {
+  @apply appearance-none cursor-pointer pr-10;
+}
+
+.select-icon {
+  @apply absolute right-0 bottom-4 text-gray-300 pointer-events-none text-sm;
+}
+
+.field-error {
+  @apply text-sm text-[#E52E2E] mt-2.5 font-bold;
+}
+
+/* ── Form Actions ── */
+.form-actions {
+  @apply flex items-center justify-between mt-10 pt-10 border-t border-gray-50;
+}
+
+.delete-link {
+  @apply text-[16px] text-[#E52E2E] hover:underline font-bold
+         cursor-pointer transition-colors;
+}
+
+.save-btn {
+  @apply px-14 py-4 bg-[#8B1A2B] hover:bg-[#6D1422] text-white text-[17px]
+         rounded-2xl font-extrabold transition-all cursor-pointer
+         disabled:opacity-50 disabled:cursor-not-allowed
+         flex items-center gap-3 shadow-xl hover:shadow-2xl active:scale-[0.98];
+}
+
+/* ── Modal ── */
+.modal-backdrop {
+  @apply fixed inset-0 z-[100] flex items-center justify-center
+         bg-black/40 backdrop-blur-[6px];
+}
+
+.modal-box {
+  @apply bg-white rounded-[3rem] shadow-2xl max-w-sm w-full p-12
+         text-center relative;
+  animation: fade-up 0.6s ease-out forwards;
+}
+
+.modal-close {
+  @apply absolute top-8 right-8 text-gray-300 hover:text-gray-500
+         cursor-pointer w-10 h-10 flex items-center justify-center transition-colors;
+}
+
+.modal-icon-container {
+  @apply flex justify-center mb-8;
+}
+
+.modal-icon-circle {
+  @apply w-24 h-24 bg-gray-50 rounded-full flex items-center justify-center
+         text-gray-200 text-4xl;
+}
+
+.modal-title {
+  @apply text-2xl font-extrabold text-gray-900 mb-4 px-2 leading-tight;
+}
+
+.modal-warning {
+  @apply text-[15px] text-[#E52E2E] font-bold mb-12;
+}
+
+.modal-actions {
+  @apply flex gap-5;
+}
+
+.modal-btn-cancel {
+  @apply flex-1 py-4 px-6 border border-gray-100 rounded-[1.25rem] text-[15px]
+         text-gray-500 font-extrabold hover:bg-gray-50 transition-colors cursor-pointer;
+}
+
+.modal-btn-confirm {
+  @apply flex-1 py-4 px-6 bg-[#E52E2E] text-white rounded-[1.25rem] text-[15px]
+         font-extrabold hover:bg-[#C41C1C] transition-all cursor-pointer shadow-lg hover:shadow-xl;
+}

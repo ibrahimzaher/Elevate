@@ -21,6 +21,8 @@ export interface EditProfileParams {
   lastName?: string;
   email?: string;
   phone?: string;
+  gender?: 'male' | 'female';
+  photo?: File | string;
 }
 export interface ForgetPasswordParams {
   email: string;

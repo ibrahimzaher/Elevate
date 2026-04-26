@@ -1,0 +1,70 @@
+@reference "tailwindcss";
+
+.security-wrapper {
+  @apply pt-4;
+}
+
+/* ── Alerts ── */
+.alert {
+  @apply mb-10 px-6 py-4 rounded-2xl flex items-center gap-4 text-[15px] font-bold;
+}
+
+.alert-success {
+  @apply bg-green-50 text-green-700 border border-green-100;
+}
+
+.alert-error {
+  @apply bg-red-50 text-red-600 border border-red-100;
+}
+
+/* ── Form ── */
+.security-form {
+  @apply flex flex-col gap-10;
+}
+
+.form-field {
+  @apply flex flex-col;
+}
+
+.field-label {
+  @apply text-[14px] font-bold text-gray-400 mb-3;
+}
+
+.field-input {
+  @apply w-full pb-3 border-b border-gray-100 text-[17px] text-gray-900 font-semibold
+         outline-none focus:border-[#8B1A2B] transition-colors bg-transparent
+         placeholder:text-gray-200;
+}
+
+.field-password {
+  @apply relative;
+}
+
+.field-password .field-input {
+  @apply pr-14;
+}
+
+.eye-btn {
+  @apply absolute right-0 bottom-4 text-gray-400 hover:text-gray-600
+         cursor-pointer focus:outline-none p-1 transition-colors;
+}
+
+.eye-btn i {
+  @apply text-lg;
+}
+
+.field-error {
+  @apply text-sm text-[#E52E2E] mt-2.5 font-bold;
+}
+
+/* ── Actions ── */
+.form-actions {
+  @apply flex justify-end mt-10 pt-10 border-t border-gray-50;
+}
+
+.change-btn {
+  @apply px-14 py-4 bg-[#8B1A2B] hover:bg-[#6D1422] text-white text-[17px]
+         rounded-2xl font-extrabold transition-all cursor-pointer
+         disabled:opacity-50 disabled:cursor-not-allowed
+         flex items-center gap-3 shadow-xl hover:shadow-2xl active:scale-[0.98];
+}

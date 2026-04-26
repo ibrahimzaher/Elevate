@@ -1,0 +1,28 @@
+<div class="profile-container">
+  <h1 class="profile-title">Update Profile</h1>
+
+  <div class="profile-layout">
+    <!-- Sidebar -->
+    <div class="profile-sidebar">
+      <div class="sidebar-nav">
+        <a routerLink="details" routerLinkActive="active-link" class="sidebar-btn">
+          <i class="pi pi-user"></i> My Account
+        </a>
+        <a routerLink="security" routerLinkActive="active-link" class="sidebar-btn">
+          <i class="pi pi-lock"></i> Change Password
+        </a>
+      </div>
+
+      <div class="sidebar-footer">
+        <button (click)="logout()" class="logout-btn">
+          <i class="pi pi-sign-out"></i> Logout
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="profile-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

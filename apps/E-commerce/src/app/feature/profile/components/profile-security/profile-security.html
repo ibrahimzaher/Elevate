@@ -1,0 +1,81 @@
+<div class="security-wrapper">
+  <!-- Alerts -->
+  @if (successMessage) {
+    <div class="alert alert-success">
+      <i class="pi pi-check-circle"></i> {{ successMessage }}
+    </div>
+  }
+  @if (errorMessage) {
+    <div class="alert alert-error">
+      <i class="pi pi-exclamation-circle"></i> {{ errorMessage }}
+    </div>
+  }
+
+  <form [formGroup]="passwordForm" (ngSubmit)="onSubmit()" class="security-form">
+    <!-- Old Password -->
+    <div class="form-field">
+      <label class="field-label">Old Password</label>
+      <div class="field-password">
+        <input [type]="showOldPassword ? 'text' : 'password'"
+               formControlName="oldPassword"
+               placeholder="••••••••"
+               class="field-input">
+        <button type="button" (click)="toggleOldPasswordVisibility()" class="eye-btn">
+          <i class="pi" [ngClass]="showOldPassword ? 'pi-eye-slash' : 'pi-eye'"></i>
+        </button>
+      </div>
+      @if (passwordForm.get('oldPassword')?.touched && passwordForm.get('oldPassword')?.invalid) {
+        <span class="field-error">Old Password is required.</span>
+      }
+    </div>
+
+    <!-- New Password -->
+    <div class="form-field">
+      <label class="field-label">New Password</label>
+      <div class="field-password">
+        <input [type]="showNewPassword ? 'text' : 'password'"
+               formControlName="newPassword"
+               placeholder="••••••••"
+               class="field-input">
+        <button type="button" (click)="toggleNewPasswordVisibility()" class="eye-btn">
+          <i class="pi" [ngClass]="showNewPassword ? 'pi-eye-slash' : 'pi-eye'"></i>
+        </button>
+      </div>
+      @if (passwordForm.get('newPassword')?.touched && passwordForm.get('newPassword')?.hasError('required')) {
+        <span class="field-error">New Password is required.</span>
+      }
+      @if (passwordForm.get('newPassword')?.touched && passwordForm.get('newPassword')?.hasError('minlength')) {
+        <span class="field-error">Password must be at least 6 characters.</span>
+      }
+    </div>
+
+    <!-- Confirm New Password -->
+    <div class="form-field">
+      <label class="field-label">Confirm New Password</label>
+      <div class="field-password">
+        <input [type]="showConfirmPassword ? 'text' : 'password'"
+               formControlName="confirmPassword"
+               placeholder="••••••••"
+               class="field-input">
+        <button type="button" (click)="toggleConfirmPasswordVisibility()" class="eye-btn">
+          <i class="pi" [ngClass]="showConfirmPassword ? 'pi-eye-slash' : 'pi-eye'"></i>
+        </button>
+      </div>
+      @if (passwordForm.get('confirmPassword')?.touched && passwordForm.get('confirmPassword')?.hasError('required')) {
+        <span class="field-error">Please confirm your new password.</span>
+      }
+      @if (passwordForm.get('confirmPassword')?.touched && passwordForm.get('confirmPassword')?.hasError('passwordMismatch')) {
+        <span class="field-error">Passwords do not match.</span>
+      }
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" [disabled]="isLoading" class="change-btn">
+        @if (isLoading) {
+          <i class="pi pi-spin pi-spinner"></i>
+        }
+        Change Password
+      </button>
+    </div>
+  </form>
+</div>

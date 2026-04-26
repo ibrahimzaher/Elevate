@@ -79,6 +79,14 @@ export const mainRoutes: Routes = [
           ),
       },
       {
+        path: 'profile',
+        canActivate: [authGuard],
+        loadChildren: () =>
+          import('../../../feature/profile/profile.routes').then(
+            (m) => m.profileRoutes
+          ),
+      },
+      {
         path: 'contact',
         loadComponent: () =>
           import('../../../feature/contact/contact.component').then(

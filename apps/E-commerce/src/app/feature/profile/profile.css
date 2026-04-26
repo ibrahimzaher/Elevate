@@ -1,0 +1,59 @@
+@reference "tailwindcss";
+
+.profile-container {
+  @apply max-w-7xl mx-auto px-8 py-20;
+}
+
+.profile-title {
+  @apply text-[40px] font-extrabold text-gray-900 mb-14 tracking-tight;
+}
+
+.profile-layout {
+  @apply flex flex-col md:flex-row gap-20;
+}
+
+/* ── Sidebar ── */
+.profile-sidebar {
+  @apply flex flex-col justify-between w-full md:w-64 shrink-0;
+  min-height: 500px;
+}
+
+.sidebar-nav {
+  @apply flex flex-col gap-4;
+}
+
+.sidebar-btn {
+  @apply flex items-center gap-4 px-6 py-4 rounded-2xl text-[16px] font-bold
+         text-gray-400 transition-all cursor-pointer;
+}
+
+.sidebar-btn i {
+  @apply text-xl;
+}
+
+.sidebar-btn.active-link {
+  @apply bg-[#0C1421] text-white shadow-2xl;
+}
+
+.sidebar-btn:not(.active-link):hover {
+  @apply text-gray-900 bg-gray-50;
+}
+
+.sidebar-footer {
+  @apply mt-auto pt-12;
+}
+
+.logout-btn {
+  @apply flex items-center gap-3 px-6 py-3.5 text-[15px] font-extrabold
+         text-[#E52E2E] bg-[#FEF2F2] rounded-2xl hover:bg-[#FEE2E2]
+         cursor-pointer transition-all shadow-sm hover:shadow-md active:scale-95;
+}
+
+.logout-btn i {
+  @apply text-lg;
+}
+
+/* ── Content ── */
+.profile-content {
+  @apply flex-1 min-w-0 bg-white rounded-[2.5rem] border border-gray-50 shadow-sm p-16;
+}
