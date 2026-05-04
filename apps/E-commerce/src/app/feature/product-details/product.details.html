@@ -10,7 +10,15 @@
     <app-product-info [product]="product()" (addToCart)="handleAddToCart($event)"
       (toggleWishlist)="handleToggleWishlist($event)" />
   </div>
+  @defer (on viewport) {
   <app-product-reviews [reviews]="reviews()" />
+  } @placeholder {
+  <div class="h-32"></div>
+  }
+  @defer (on viewport) {
   <app-related-product [products]="relatedProducts()" />
+  } @placeholder {
+  <div class="h-32"></div>
+  }
 </section>
 }

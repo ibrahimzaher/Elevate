@@ -59,9 +59,11 @@
     class="aspect-square relative overflow-hidden rounded-2xl mb-3 bg-gray-50 group/image shrink-0"
   >
     <img
-      [src]="product().imgCover"
+      [ngSrc]="product().imgCover"
+      fill
+      [priority]="priorityImage()"
       [alt]="product().title"
-      class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+      class="object-cover transition-transform duration-700 group-hover:scale-110"
     />
 
     <div

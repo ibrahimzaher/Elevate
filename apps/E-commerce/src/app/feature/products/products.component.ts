@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, signal } from '@angular/core';
+import { Component, DestroyRef, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductList } from './components/product-list/product.list';
@@ -9,6 +9,7 @@ import { FilterState } from './interfaces/product';
   selector: 'app-products',
   imports: [ProductList, FiltersComponent],
   templateUrl: './products.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductsComponent {
   private readonly route = inject(ActivatedRoute);

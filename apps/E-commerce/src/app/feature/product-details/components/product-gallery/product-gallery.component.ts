@@ -1,10 +1,12 @@
-import { Component, effect, input, signal } from '@angular/core';
+import { Component, effect, input, signal, ChangeDetectionStrategy } from '@angular/core';
 import { Product } from '../../../../shared/components/ui/product-card/interface/product';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-product-gallery',
-  imports: [],
+  imports: [NgOptimizedImage],
   templateUrl: './product-gallery.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductGalleryComponent {
   product = input.required<Product | null>();

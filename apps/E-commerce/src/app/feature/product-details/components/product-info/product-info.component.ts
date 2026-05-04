@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, ChangeDetectionStrategy } from '@angular/core';
 import { Product } from '../../../../shared/components/ui/product-card/interface/product';
 import { LucideAngularModule } from 'lucide-angular';
 import { Divider } from 'primeng/divider';
@@ -10,6 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
   selector: 'app-product-info',
   imports: [LucideAngularModule, Divider, DecimalPipe, ButtonComponent, TranslateModule],
   templateUrl: './product-info.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductInfoComponent {
   product = input.required<Product | null>();

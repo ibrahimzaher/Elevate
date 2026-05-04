@@ -1,5 +1,5 @@
-import { DecimalPipe } from '@angular/common';
-import { Component, computed, DestroyRef, inject, input } from '@angular/core';
+import { DecimalPipe, NgOptimizedImage } from '@angular/common';
+import { Component, computed, DestroyRef, inject, input, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ButtonComponent } from '@elevate/reusable-ui';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -11,12 +11,14 @@ import { WishlistService } from '../../../services/wishlist.service';
 
 @Component({
   selector: 'app-product-card',
-  imports: [LucideAngularModule, DecimalPipe, ButtonComponent, TranslatePipe],
+  imports: [LucideAngularModule, DecimalPipe, ButtonComponent, TranslatePipe, NgOptimizedImage],
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductCardComponent {
   product = input.required<Product>();
+  priorityImage = input<boolean>(false);
   private readonly _cartService = inject(CartService);
   private readonly _destroyRef = inject(DestroyRef);
   readonly ICON_SIZE = 18;

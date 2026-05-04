@@ -1,4 +1,4 @@
-import { Component, DestroyRef, computed, effect, inject, input, signal } from '@angular/core';
+import { Component, DestroyRef, computed, effect, inject, input, signal, ChangeDetectionStrategy } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { finalize } from 'rxjs';
 import { PaginatorState } from 'primeng/paginator';
@@ -14,6 +14,7 @@ import { LucideAngularModule, SearchX } from 'lucide-angular';
   selector: 'app-product-list',
   templateUrl: './product.list.html',
   imports: [ProductCardComponent, PaginatorComponent, TranslatePipe, LucideAngularModule],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductList {
   readonly SearchXIcon = SearchX;
