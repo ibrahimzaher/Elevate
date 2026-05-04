@@ -1,4 +1,10 @@
-import { Component, signal, computed, effect } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  signal,
+  computed,
+  effect,
+} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthSeparatorComponent } from './components/auth-separator/auth-separator.component';
@@ -11,12 +17,24 @@ import { AuthPage, AuthPageData } from './interfaces/auth-page-data';
 
 @Component({
   selector: 'app-auth-layout',
-  imports: [CommonModule, RouterOutlet, AuthSeparatorComponent, AuthBackgroundComponent, LanguageSwitcherComponent, ThemeSwitcherComponent, AuthTitleComponent, AuthFooterComponent],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    AuthSeparatorComponent,
+    AuthBackgroundComponent,
+    LanguageSwitcherComponent,
+    ThemeSwitcherComponent,
+    AuthTitleComponent,
+    AuthFooterComponent,
+  ],
   templateUrl: './auth-layout.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AuthLayoutComponent {
   activeComponent = signal<AuthPage | null>(null);
-  currentPageData = computed<AuthPageData>(() => this.activeComponent()?.authData() ?? {});
+  currentPageData = computed<AuthPageData>(
+    () => this.activeComponent()?.authData() ?? {}
+  );
 
   private pendingComponent = signal<AuthPage | null>(null);
 

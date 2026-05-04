@@ -39,8 +39,9 @@
     <p class="col-span-full text-center text-zinc-400 py-12">
       {{ 'MOST_POPULAR.LOADING_PRODUCTS' | translate }}
     </p>
-    } @else { @for (product of filteredProducts(); track product._id) {
-    <app-product-card [product]="product" />
+    } @else { @for (product of filteredProducts(); track product._id; let i =
+    $index) {
+    <app-product-card [product]="product" [priorityImage]="i < 4" />
     } @empty {
     <p class="col-span-full text-center text-zinc-400 py-12">
       {{ 'MOST_POPULAR.NO_PRODUCTS_FOUND' | translate }}

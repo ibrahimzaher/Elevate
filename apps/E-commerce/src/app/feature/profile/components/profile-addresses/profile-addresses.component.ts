@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+} from '@angular/core';
 import { NgComponentOutlet } from '@angular/common';
 import { AddressStateService } from '../../../../shared/components/ui/dialogs/address-dialog/services/address-state.service';
 import { AddressListDialogComponent } from '../../../../shared/components/ui/dialogs/address-dialog/components/address-list/address-list-dialog.component';
@@ -43,7 +48,7 @@ class InlineDialogRef extends DynamicDialogRef {
       <ng-container [ngComponentOutlet]="activeComponent()"></ng-container>
     </div>
     @defer {
-      <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+    <p-confirmDialog [style]="{ width: '50vw' }"></p-confirmDialog>
     }
   `,
 })

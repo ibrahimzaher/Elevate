@@ -1,4 +1,10 @@
-import { Component, DestroyRef, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+  signal,
+} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   FormControl,
@@ -37,6 +43,7 @@ import { Gender } from '../../../../core/enums/gender.enum';
     TranslatePipe,
   ],
   templateUrl: './register.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterComponent implements AuthPage {
   private readonly auth = inject(AuthRepo);
@@ -84,13 +91,19 @@ export class RegisterComponent implements AuthPage {
       }),
     },
     {
-      validators: ValidationsUtils.matchFieldsValidator('password', 'rePassword'),
+      validators: ValidationsUtils.matchFieldsValidator(
+        'password',
+        'rePassword'
+      ),
     }
   );
 
   readonly genderOptions = [
     { label: this.translate.instant('AUTH.REGISTER.MALE'), value: Gender.Male },
-    { label: this.translate.instant('AUTH.REGISTER.FEMALE'), value: Gender.Female },
+    {
+      label: this.translate.instant('AUTH.REGISTER.FEMALE'),
+      value: Gender.Female,
+    },
   ];
 
   submit(): void {
@@ -122,9 +135,7 @@ export class RegisterComponent implements AuthPage {
       )
       .subscribe({
         next: () => {
-          this.toastr.success(
-            this.translate.instant('AUTH.REGISTER.SUCCESS')
-          );
+          this.toastr.success(this.translate.instant('AUTH.REGISTER.SUCCESS'));
           this.router.navigate(['/auth/login']);
         },
       });

@@ -1,4 +1,9 @@
-import { Component, inject, input, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  inject,
+  input,
+  ChangeDetectionStrategy,
+} from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
@@ -15,6 +20,7 @@ export class TaxonomyCardComponent {
 
   readonly title = input.required<string>();
   readonly imageUrl = input<string | undefined>();
+  readonly priority = input(false);
   readonly queryParamName = input.required<string>();
   readonly queryParamValue = input.required<string>();
   readonly productsCount = input<number | undefined>();
@@ -28,5 +34,4 @@ export class TaxonomyCardComponent {
       },
     });
   }
-
 }

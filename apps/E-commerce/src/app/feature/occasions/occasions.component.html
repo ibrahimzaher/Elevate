@@ -27,7 +27,10 @@
     } @else if (occasions().length === 0) {
     <div class="taxonomy-empty-state">
       <div class="taxonomy-empty-icon-box">
-        <lucide-icon [img]="LayoutGridIcon" class="taxonomy-empty-icon"></lucide-icon>
+        <lucide-icon
+          [img]="LayoutGridIcon"
+          class="taxonomy-empty-icon"
+        ></lucide-icon>
       </div>
       <h2 class="taxonomy-empty-title">
         {{ 'OCCASIONS_PAGE.EMPTY_TITLE' | translate }}
@@ -38,10 +41,16 @@
     </div>
     } @else {
     <div class="taxonomy-grid">
-      @for (occasion of occasions(); track occasion._id) {
-      <app-taxonomy-card [title]="occasion.name" [imageUrl]="occasionImageUrl(occasion.image)" queryParamName="occasion"
-        [queryParamValue]="occasion._id" [productsCount]="occasion.productsCount"
-        productsCountKey="OCCASIONS_PAGE.PRODUCTS_COUNT"></app-taxonomy-card>
+      @for (occasion of occasions(); track occasion._id; let isFirst = $first) {
+      <app-taxonomy-card
+        [title]="occasion.name"
+        [imageUrl]="occasionImageUrl(occasion.image)"
+        queryParamName="occasion"
+        [queryParamValue]="occasion._id"
+        [productsCount]="occasion.productsCount"
+        [priority]="isFirst"
+        productsCountKey="OCCASIONS_PAGE.PRODUCTS_COUNT"
+      ></app-taxonomy-card>
       }
     </div>
     }

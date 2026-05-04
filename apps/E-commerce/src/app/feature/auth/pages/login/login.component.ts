@@ -1,5 +1,11 @@
 import { CartService } from './../../../cart/services/cart.service';
-import { Component, DestroyRef, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+  signal,
+} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   FormControl,
@@ -34,6 +40,7 @@ import { authConfig } from '../../auth.config';
     TranslatePipe,
   ],
   templateUrl: './login.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent implements AuthPage {
   private readonly auth = inject(AuthRepo);

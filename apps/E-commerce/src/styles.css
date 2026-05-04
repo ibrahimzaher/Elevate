@@ -738,7 +738,12 @@ html[dir='rtl'] .iti .iti__dropdown-content {
 }
 
 @utility taxonomy-page {
-  @apply min-h-[60vh];
+  min-height: 60vh;
+}
+
+@utility gallery-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 56rem;
 }
 
 @utility taxonomy-container {
@@ -809,6 +814,8 @@ html[dir='rtl'] .iti .iti__dropdown-content {
   @apply block w-full cursor-pointer overflow-hidden rounded-2xl border border-zinc-100 bg-white p-0 text-start no-underline shadow-sm transition-all duration-200 hover:-translate-y-1 hover:border-maroon-200 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-maroon-500 focus-visible:ring-offset-2 dark:border-zinc-800 dark:bg-zinc-900/70 dark:hover:border-soft-pink-300/50 dark:focus-visible:ring-soft-pink-300 dark:focus-visible:ring-offset-zinc-950;
   appearance: none;
   font: inherit;
+  content-visibility: auto;
+  contain-intrinsic-size: 0 22rem;
 }
 
 @utility taxonomy-card-media {

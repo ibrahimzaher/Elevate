@@ -41,13 +41,15 @@
     </div>
     } @else {
     <div class="taxonomy-grid">
-      @for (category of categories(); track category._id) {
+      @for (category of categories(); track category._id; let isFirst = $first)
+      {
       <app-taxonomy-card
         [title]="category.name"
         [imageUrl]="category.image"
         queryParamName="category"
         [queryParamValue]="category._id"
         [productsCount]="category.productsCount"
+        [priority]="isFirst"
         productsCountKey="CATEGORIES_PAGE.PRODUCTS_COUNT"
       ></app-taxonomy-card>
       }
