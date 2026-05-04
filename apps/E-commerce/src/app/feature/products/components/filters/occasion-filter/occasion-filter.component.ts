@@ -1,14 +1,17 @@
-import { Component, DestroyRef, OnInit, effect, inject, input, output, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, OnInit, effect, inject, input, output, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Occasion } from '../../../interfaces/product';
 import { ProductsService } from '../../../services/product';
 import { FilterResetBtnComponent } from '../filter-reset-btn/filter-reset-btn.component';
 import { TranslatePipe } from '@ngx-translate/core';
+import { HttpContext } from '@angular/common/http';
+import { SKIP_GLOBAL_LOADING } from '../../../../../core/interceptors/loading-interceptor';
 
 @Component({
   selector: 'app-occasion-filter',
   imports: [FilterResetBtnComponent, TranslatePipe],
   templateUrl: './occasion-filter.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OccasionFilterComponent implements OnInit {
   private readonly productsService = inject(ProductsService);
@@ -34,7 +37,7 @@ export class OccasionFilterComponent implements OnInit {
   private fetchOccasions(): void {
     this.isLoading.set(true);
     this.productsService
-      .getOccasions()
+      .getOccasions(1, 100, { context: new HttpContext().set(SKIP_GLOBAL_LOADING, true) })
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (data) => {

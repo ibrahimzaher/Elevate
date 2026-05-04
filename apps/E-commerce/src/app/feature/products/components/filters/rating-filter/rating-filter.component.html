@@ -8,7 +8,7 @@
 
   <div class="flex items-center gap-1.5 rounded-2xl dark:bg-zinc-900/70 dark:px-3 dark:py-2"
     (mouseleave)="onStarMouseleave()">
-    @for (star of stars; track star) {
+    @for (star of stars; track star; let i = $index) {
     <button type="button"
       [attr.aria-label]="'Filter by ' + star + ' stars'"
       class="relative flex h-7 w-7 cursor-pointer items-center justify-center border-none bg-transparent p-0 text-amber-500 transition-transform duration-100 ease-in-out hover:scale-110 dark:text-amber-400"
@@ -18,7 +18,7 @@
 
       <lucide-icon [img]="StarIcon" [size]="28" [strokeWidth]="1.5"
         class="pointer-events-none absolute inset-0 shrink-0 fill-current text-amber-500 transition-all duration-75 ease-linear dark:text-amber-400"
-        [style.clip-path]="getClipPath(star)"></lucide-icon>
+        [style.clip-path]="starClips()[i]"></lucide-icon>
     </button>
     }
   </div>

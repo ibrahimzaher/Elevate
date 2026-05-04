@@ -52,15 +52,17 @@ export class ProductCardComponent {
     );
   });
 
-  getStarClip(starIndex: number): string {
+  readonly starClips = computed(() => {
     const rating = this.product().rateAvg ?? 0;
-    if (starIndex <= Math.floor(rating)) return 'inset(0 0 0 0)';
-    if (starIndex === Math.ceil(rating)) {
-      const partial = (rating % 1) * 100;
-      return `inset(0 ${100 - partial}% 0 0)`;
-    }
-    return 'inset(0 100% 0 0)';
-  }
+    return [1, 2, 3, 4, 5].map((star) => {
+      if (star <= Math.floor(rating)) return 'inset(0 0 0 0)';
+      if (star === Math.ceil(rating)) {
+        const partial = (rating % 1) * 100;
+        return `inset(0 ${100 - partial}% 0 0)`;
+      }
+      return 'inset(0 100% 0 0)';
+    });
+  });
 
   addToCart(): void {
     this._cartService

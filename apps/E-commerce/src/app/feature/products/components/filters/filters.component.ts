@@ -1,5 +1,5 @@
 import { DOCUMENT, NgTemplateOutlet, isPlatformBrowser } from '@angular/common';
-import { Component, DestroyRef, PLATFORM_ID, computed, effect, inject, input, output, signal, viewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DestroyRef, PLATFORM_ID, computed, effect, inject, input, output, signal, viewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslatePipe } from '@ngx-translate/core';
 import { auditTime, fromEvent, startWith } from 'rxjs';
@@ -18,6 +18,7 @@ type FilterLayoutMode = 'mobile' | 'tablet' | 'desktop';
   selector: 'app-filters',
   imports: [CategoryFilterComponent, OccasionFilterComponent, RatingFilterComponent, PriceFilterComponent, ButtonComponent, DrawerModule, NgTemplateOutlet, TranslatePipe],
   templateUrl: './filters.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FiltersComponent {
   readonly ResetAllIcon = RotateCcw;

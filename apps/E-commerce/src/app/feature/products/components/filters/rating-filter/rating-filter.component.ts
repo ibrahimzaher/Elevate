@@ -1,4 +1,4 @@
-import { Component, output, signal, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, output, signal, inject, computed } from '@angular/core';
 import { FilterResetBtnComponent } from '../filter-reset-btn/filter-reset-btn.component';
 import { TranslatePipe } from '@ngx-translate/core';
 import { LucideAngularModule, Star } from 'lucide-angular';
@@ -7,7 +7,8 @@ import { DOCUMENT } from '@angular/common';
 @Component({
   selector: 'app-rating-filter',
   imports: [FilterResetBtnComponent, TranslatePipe, LucideAngularModule],
-  templateUrl: './rating-filter.component.html'
+  templateUrl: './rating-filter.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RatingFilterComponent {
   readonly StarIcon = Star;
@@ -20,24 +21,25 @@ export class RatingFilterComponent {
 
   stars = [1, 2, 3, 4, 5];
 
-  get displayRating(): number {
-    return this.hoverRating() !== null ? this.hoverRating()! : (this.selectedRating() || 0);
-  }
+  readonly displayRating = computed(() => {
+    const hover = this.hoverRating();
+    return hover !== null ? hover : (this.selectedRating() || 0);
+  });
 
-  getFillPercentage(star: number): number {
-    const rating = this.displayRating;
-    if (rating >= star) return 100;
-    if (rating === star - 0.5) return 50;
-    return 0;
-  }
-
-  getClipPath(star: number): string {
-    const fill = this.getFillPercentage(star);
-    if (fill === 100) return 'none';
-    if (fill === 0) return 'inset(0 100% 0 0)';
+  readonly starClips = computed(() => {
+    const rating = this.displayRating();
     const isRtl = this.document.documentElement.dir === 'rtl';
-    return isRtl ? 'inset(0 0 0 50%)' : 'inset(0 50% 0 0)';
-  }
+    
+    return this.stars.map((star) => {
+      let fill = 0;
+      if (rating >= star) fill = 100;
+      else if (rating === star - 0.5) fill = 50;
+
+      if (fill === 100) return 'none';
+      if (fill === 0) return 'inset(0 100% 0 0)';
+      return isRtl ? 'inset(0 0 0 50%)' : 'inset(0 50% 0 0)';
+    });
+  });
 
   onStarMousemove(event: MouseEvent, star: number): void {
     const rect = (event.currentTarget as HTMLElement).getBoundingClientRect();

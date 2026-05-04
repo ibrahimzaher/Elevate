@@ -1,7 +1,15 @@
 <h1 class="sr-only">Rose home</h1>
 <app-hero-section />
+@defer (on viewport) {
 <app-features-bar />
+} @placeholder {
+<div class="h-24 animate-pulse rounded-3xl bg-zinc-100 dark:bg-zinc-800"></div>
+}
+@defer (on viewport) {
 <app-best-seller [bestSellers]="bestSellers()" />
+} @placeholder {
+<div class="h-96 animate-pulse rounded-3xl bg-zinc-100 dark:bg-zinc-800"></div>
+}
 
 @defer (on viewport) {
 <app-most-popular />

@@ -66,15 +66,17 @@ export class ProductsService {
     });
   }
 
-  getOccasions(page = 1, limit = 100): Observable<OccasionsRes> {
+  getOccasions(page = 1, limit = 100, options: { context?: HttpContext } = {}): Observable<OccasionsRes> {
     return this.http.get<OccasionsRes>(
-      `${this.baseUrl}/occasions?page=${page}&limit=${limit}`
+      `${this.baseUrl}/occasions?page=${page}&limit=${limit}`,
+      { context: options.context }
     );
   }
 
-  getCategories(page = 1, limit = 100): Observable<CategoriesRes> {
+  getCategories(page = 1, limit = 100, options: { context?: HttpContext } = {}): Observable<CategoriesRes> {
     return this.http.get<CategoriesRes>(
-      `${this.baseUrl}/categories?page=${page}&limit=${limit}`
+      `${this.baseUrl}/categories?page=${page}&limit=${limit}`,
+      { context: options.context }
     );
   }
 

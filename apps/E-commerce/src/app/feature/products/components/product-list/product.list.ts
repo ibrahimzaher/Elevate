@@ -1,6 +1,8 @@
 import { Component, DestroyRef, computed, effect, inject, input, signal, ChangeDetectionStrategy } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { finalize } from 'rxjs';
+import { HttpContext } from '@angular/common/http';
+import { SKIP_GLOBAL_LOADING } from '../../../../core/interceptors/loading-interceptor';
 import { PaginatorState } from 'primeng/paginator';
 import { ProductQueryParams } from '../../interfaces/product';
 import { Product } from '../../../../shared/components/ui/product-card/interface/product';
@@ -88,15 +90,18 @@ export class ProductList {
     this.isLoading.set(true);
 
     this.productsService
-      .getProducts({
-        page,
-        limit,
-        categoryIds,
-        occasionIds,
-        rating,
-        priceFrom,
-        priceTo,
-      })
+      .getProducts(
+        {
+          page,
+          limit,
+          categoryIds,
+          occasionIds,
+          rating,
+          priceFrom,
+          priceTo,
+        },
+        { context: new HttpContext().set(SKIP_GLOBAL_LOADING, true) }
+      )
       .pipe(finalize(() => this.isLoading.set(false)))
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({

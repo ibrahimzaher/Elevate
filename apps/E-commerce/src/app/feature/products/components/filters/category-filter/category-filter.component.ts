@@ -1,15 +1,28 @@
-import { Component, DestroyRef, OnInit, effect, inject, input, output, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  OnInit,
+  effect,
+  inject,
+  input,
+  output,
+  signal,
+} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Category } from '../../../interfaces/product';
 import { ProductsService } from '../../../services/product';
 import { FilterResetBtnComponent } from '../filter-reset-btn/filter-reset-btn.component';
 import { TranslatePipe } from '@ngx-translate/core';
+import { HttpContext } from '@angular/common/http';
+import { SKIP_GLOBAL_LOADING } from '../../../../../core/interceptors/loading-interceptor';
 import { LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'app-category-filter',
   imports: [FilterResetBtnComponent, TranslatePipe, LucideAngularModule],
   templateUrl: './category-filter.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoryFilterComponent implements OnInit {
   private readonly productsService = inject(ProductsService);
@@ -35,7 +48,9 @@ export class CategoryFilterComponent implements OnInit {
   private fetchCategories(): void {
     this.isLoading.set(true);
     this.productsService
-      .getCategories()
+      .getCategories(1, 100, {
+        context: new HttpContext().set(SKIP_GLOBAL_LOADING, true),
+      })
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
         next: (data) => {
@@ -44,7 +59,7 @@ export class CategoryFilterComponent implements OnInit {
           );
           this.categories.set(sorted);
           this.isLoading.set(false);
-        }
+        },
       });
   }
 
