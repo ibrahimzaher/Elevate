@@ -1,5 +1,10 @@
 import { NgOptimizedImage } from '@angular/common';
-import { Component, inject, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+} from '@angular/core';
 import { ButtonComponent } from '@elevate/reusable-ui';
 import { LucideAngularModule } from 'lucide-angular';
 import { TranslateModule } from '@ngx-translate/core';
@@ -20,6 +25,7 @@ import { CartService } from './../../../../services/cart.service';
       'block border-b border-zinc-200 dark:border-zinc-800 last:border-0 pb-5 last:pb-0 transition-colors',
   },
   templateUrl: './cart-item.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartItemComponent {
   private readonly cartService = inject(CartService);

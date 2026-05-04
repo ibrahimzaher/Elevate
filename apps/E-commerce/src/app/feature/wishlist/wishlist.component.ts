@@ -1,4 +1,11 @@
-import { Component, inject, OnInit, signal, DestroyRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+  DestroyRef,
+} from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
@@ -23,6 +30,7 @@ import { Product } from '../../shared/components/ui/product-card/interface/produ
   ],
   templateUrl: './wishlist.component.html',
   styleUrl: './wishlist.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WishlistComponent implements OnInit {
   readonly wishlistService = inject(WishlistService);

@@ -22,6 +22,7 @@ export class WishlistService {
   private readonly baseUrl = environment.baseUrl;
 
   private readonly _wishlistIds = signal<string[]>([]);
+  private readonly _wishlistIdSet = signal<Set<string>>(new Set());
   private readonly _wishlistProducts = signal<Product[]>([]);
   private readonly _isLoading = signal<boolean>(false);
 
@@ -31,7 +32,12 @@ export class WishlistService {
   readonly wishlistCount = computed(() => this._wishlistIds().length);
 
   isInWishlist(productId: string): boolean {
-    return this._wishlistIds().includes(productId);
+    return this._wishlistIdSet().has(productId);
+  }
+
+  private syncWishlistIds(ids: string[]) {
+    this._wishlistIds.set(ids);
+    this._wishlistIdSet.set(new Set(ids));
   }
 
   loadWishlist(): Observable<unknown> {
@@ -44,7 +50,7 @@ export class WishlistService {
 
           const rawIds = productsArray.map((p: any) => p._id || p.id);
           const ids = rawIds.filter((id: any): id is string => !!id);
-          this._wishlistIds.set(ids);
+          this.syncWishlistIds(ids);
           this._wishlistProducts.set(productsArray);
           this._isLoading.set(false);
         },
@@ -67,8 +73,11 @@ export class WishlistService {
     // Optimistic update
     this._wishlistIds.update((ids) => {
       if (!ids.includes(productId)) {
-        return [...ids, productId];
+        const next = [...ids, productId];
+        this._wishlistIdSet.set(new Set(next));
+        return next;
       }
+      this._wishlistIdSet.set(new Set(ids));
       return ids;
     });
 
@@ -77,13 +86,15 @@ export class WishlistService {
       .pipe(
         tap({
           next: () => {
-            this.toastr.success(
-              this.translate.instant('WISHLIST.ADDED')
-            );
+            this.toastr.success(this.translate.instant('WISHLIST.ADDED'));
           },
           error: () => {
             // Rollback
-            this._wishlistIds.update((ids) => ids.filter(id => id !== productId));
+            this._wishlistIds.update((ids) => {
+              const next = ids.filter((id) => id !== productId);
+              this._wishlistIdSet.set(new Set(next));
+              return next;
+            });
           },
         }),
         switchMap(() => this.loadWishlist())
@@ -92,7 +103,11 @@ export class WishlistService {
 
   removeFromWishlist(productId: string): Observable<unknown> {
     // Optimistic update
-    this._wishlistIds.update((ids) => ids.filter(id => id !== productId));
+    this._wishlistIds.update((ids) => {
+      const next = ids.filter((id) => id !== productId);
+      this._wishlistIdSet.set(new Set(next));
+      return next;
+    });
     this._wishlistProducts.update((products) =>
       products.filter((p) => p._id !== productId)
     );
@@ -102,28 +117,29 @@ export class WishlistService {
       .pipe(
         tap({
           next: () => {
-            this.toastr.success(
-              this.translate.instant('WISHLIST.REMOVED')
-            );
+            this.toastr.success(this.translate.instant('WISHLIST.REMOVED'));
           },
           error: () => {
             // Rollback
             this._wishlistIds.update((ids) => {
               if (!ids.includes(productId)) {
-                return [...ids, productId];
+                const next = [...ids, productId];
+                this._wishlistIdSet.set(new Set(next));
+                return next;
               }
+              this._wishlistIdSet.set(new Set(ids));
               return ids;
             });
           },
         }),
-        catchError((err) => this.loadWishlist().pipe(
-          switchMap(() => throwError(() => err))
-        ))
+        catchError((err) =>
+          this.loadWishlist().pipe(switchMap(() => throwError(() => err)))
+        )
       );
   }
 
   clearWishlist(): void {
-    this._wishlistIds.set([]);
+    this.syncWishlistIds([]);
     this._wishlistProducts.set([]);
   }
 }

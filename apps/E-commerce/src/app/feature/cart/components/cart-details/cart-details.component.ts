@@ -1,4 +1,9 @@
-import { Component, inject, input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  input,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ButtonComponent } from '@elevate/reusable-ui';
 import { LucideAngularModule } from 'lucide-angular';
@@ -21,6 +26,7 @@ import { EmptyCartComponent } from './components/empty-cart/empty-cart.component
   ],
   templateUrl: './cart-details.component.html',
   styleUrl: './cart-details.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CartDetailsComponent {
   private readonly cartService = inject(CartService);
