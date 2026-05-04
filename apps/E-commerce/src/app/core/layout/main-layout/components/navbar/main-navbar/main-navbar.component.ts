@@ -26,7 +26,7 @@ export class MainNavbarComponent {
     mobileActive: 'dark:bg-soft-pink-700 bg-maroon-800  text-soft-pink-200!',
   };
   items = [
-    { label: 'NAVBAR.HOME', icon: 'pi pi-home', routerLink: '/home' },
+    { label: 'NAVBAR.HOME', icon: 'pi pi-home', routerLink: '/' },
     {
       label: 'NAVBAR.PRODUCTS',
       icon: 'pi pi-box',

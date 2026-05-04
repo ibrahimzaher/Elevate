@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-trusted-by',
-  imports: [TranslatePipe],
+  imports: [TranslatePipe, NgOptimizedImage],
   templateUrl: './trusted-by.component.html',
 })
 export class TrustedByComponent {

@@ -7,7 +7,7 @@ import {
   PLATFORM_ID,
   signal,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { CarouselModule } from 'primeng/carousel';
 import { TranslateModule } from '@ngx-translate/core';
@@ -17,7 +17,14 @@ import { heroBannerConfig } from '../../interfaces/home';
 
 @Component({
   selector: 'app-hero-section',
-  imports: [CommonModule, RouterLink, CarouselModule, BottomBannerComponent, TranslateModule],
+  imports: [
+    CommonModule,
+    RouterLink,
+    CarouselModule,
+    BottomBannerComponent,
+    TranslateModule,
+    NgOptimizedImage,
+  ],
   templateUrl: './hero-section.component.html',
   styleUrl: './hero-section.component.css'
 })

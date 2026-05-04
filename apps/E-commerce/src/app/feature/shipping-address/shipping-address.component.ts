@@ -87,18 +87,15 @@ export class ShippingAddressComponent implements OnInit {
       this.proceedToPayment.emit(selectedAddress);
     }
   }
-  addAddress() {
+  async addAddress() {
     const address = this.selectedAddress();
-    if (address != null) {
-      this.dialogUiService
-        .openAddressManager('view', address)
-        ?.onClose.subscribe(() => {
-          this.getUserAddresses();
-        });
-    } else {
-      this.dialogUiService.openAddressManager('view')?.onClose.subscribe(() => {
-        this.getUserAddresses();
-      });
-    }
+    const dialogRef =
+      address != null
+        ? await this.dialogUiService.openAddressManager('view', address)
+        : await this.dialogUiService.openAddressManager('view');
+
+    dialogRef?.onClose.subscribe(() => {
+      this.getUserAddresses();
+    });
   }
 }

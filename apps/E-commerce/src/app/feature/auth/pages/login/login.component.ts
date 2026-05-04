@@ -80,7 +80,7 @@ export class LoginComponent implements AuthPage {
       )
       .subscribe({
         next: () => {
-          this.router.navigate(['/home']);
+          this.router.navigate(['/']);
         },
       });
   }

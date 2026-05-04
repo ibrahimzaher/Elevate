@@ -29,9 +29,7 @@
           "node_modules/ngx-spinner/animations/triangle-skew-spin.css",
           "node_modules/intl-tel-input/build/css/intlTelInput.css"
         ],
-      "scripts": [
-        "node_modules/intl-tel-input/build/js/utils.js"
-      ],
+      "scripts": [],
         "server": "apps/E-commerce/src/main.server.ts",
         "ssr": {
           "entry": "apps/E-commerce/src/server.ts"

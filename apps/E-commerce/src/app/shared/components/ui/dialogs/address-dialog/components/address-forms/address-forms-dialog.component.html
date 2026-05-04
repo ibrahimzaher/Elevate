@@ -9,14 +9,15 @@
 
   <app-stepper [totalSteps]="2" [currentStep]="steps()"></app-stepper>
 
+  @if (steps() === 1) {
   <app-address-form-step
-    [hidden]="steps() !== 1"
     [form]="addressForm"
     (next)="onNext()"
   ></app-address-form-step>
+  }
 
+  @if (steps() === 2) {
   <app-address-map-step
-    [hidden]="steps() !== 2"
     [center]="center"
     [zoom]="zoom"
     [markerPosition]="markerPosition"
@@ -28,4 +29,5 @@
     (findLocation)="getCurrentLocation()"
     (submitted)="onSubmit()"
   ></app-address-map-step>
+  }
 </div>

@@ -2,8 +2,25 @@
 <app-hero-section />
 <app-features-bar />
 <app-best-seller [bestSellers]="bestSellers()" />
+
+@defer (on viewport) {
 <app-most-popular />
+} @placeholder {
+<div class="h-24 animate-pulse rounded-3xl bg-zinc-100 dark:bg-zinc-800"></div>
+} @defer (on viewport) {
 <app-about-us />
+} @placeholder {
+<div class="h-72 animate-pulse rounded-3xl bg-zinc-100 dark:bg-zinc-800"></div>
+} @defer (on viewport) {
 <app-gallery-section />
+} @placeholder {
+<div class="h-96 animate-pulse rounded-3xl bg-zinc-100 dark:bg-zinc-800"></div>
+} @defer (on viewport) {
 <app-testimonial />
+} @placeholder {
+<div class="h-56 animate-pulse rounded-3xl bg-zinc-100 dark:bg-zinc-800"></div>
+} @defer (on viewport) {
 <app-trusted-by />
+} @placeholder {
+<div class="h-32 animate-pulse rounded-3xl bg-zinc-100 dark:bg-zinc-800"></div>
+}

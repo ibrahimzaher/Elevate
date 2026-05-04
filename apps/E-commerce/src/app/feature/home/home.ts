@@ -1,5 +1,11 @@
 import { MostPopular } from './components/most-popular/most-popular';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { HeroSectionComponent } from './components/hero-section/hero-section.component';
 import { BestSellerComponent } from './components/best-seller/best-seller.component';
 import { GallerySectionComponent } from './components/gallery-section/gallery-section.component';
@@ -24,6 +30,7 @@ import { AboutUsComponent } from '../about-us/about-us.component';
     MostPopular,
   ],
   templateUrl: './home.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Home implements OnInit {
   private readonly homeService = inject(HomeService);

@@ -46,14 +46,18 @@ export const mainRoutes: Routes = [
     path: '',
     component: MainLayoutComponent,
     children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
       {
-        path: 'home',
+        path: '',
         data: {
           seo: mainRouteSeo.home,
         },
         loadComponent: () =>
           import('../../../feature/home/home').then((m) => m.Home),
+      },
+      {
+        path: 'home',
+        redirectTo: '',
+        pathMatch: 'full',
       },
       {
         path: 'products',

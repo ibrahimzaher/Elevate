@@ -1,16 +1,17 @@
 import { inject, Injectable } from '@angular/core';
 import { ShippingAddress } from '../../../../../../feature/shipping-address/interfaces/shipping-address.interface';
 import { DialogService } from 'primeng/dynamicdialog';
-import { AddressDialogComponent } from '../address-dialog.component';
 
 @Injectable({ providedIn: 'root' })
 export class AddressUiService {
   private dialogService = inject(DialogService);
 
-  openAddressManager(
+  async openAddressManager(
     mode: 'view' | 'add' | 'edit' = 'view',
     address?: ShippingAddress
   ) {
+    const { AddressDialogComponent } = await import('../address-dialog.component');
+
     return this.dialogService.open(AddressDialogComponent, {
       data: { mode, address },
       header: '',

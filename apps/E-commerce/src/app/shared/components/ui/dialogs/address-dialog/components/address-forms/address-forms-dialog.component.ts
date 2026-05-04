@@ -37,7 +37,6 @@ export class AddressFormsDialogComponent implements OnInit {
   markerPosition: google.maps.LatLngLiteral = { lat: 30.0444, lng: 31.2357 };
   markerOptions: google.maps.MarkerOptions = {
     draggable: true,
-    animation: google.maps.Animation.DROP,
   };
   ngOnInit() {
     this.initForm();

@@ -1,4 +1,10 @@
-import { Component, computed, effect, inject, signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  inject,
+  signal,
+} from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { AuthRepo, AuthState } from '@elevate/auth-domain';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
@@ -143,15 +149,17 @@ export class TopNavbarComponent {
       });
   }
 
-  openAddressManager() {
-    this.addressUiService
-      .openAddressManager('view', this.primaryAddress() ?? undefined)
-      ?.onClose.pipe(take(1))
-      .subscribe(() => {
-        if (this.user()) {
-          this.loadPrimaryAddress();
-        }
-      });
+  async openAddressManager() {
+    const dialogRef = await this.addressUiService.openAddressManager(
+      'view',
+      this.primaryAddress() ?? undefined
+    );
+
+    dialogRef?.onClose.pipe(take(1)).subscribe(() => {
+      if (this.user()) {
+        this.loadPrimaryAddress();
+      }
+    });
   }
 
   navigateToCart(event: Event) {
