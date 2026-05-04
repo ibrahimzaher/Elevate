@@ -1,5 +1,5 @@
 import { languageService } from './../../../../core/services/language-service';
-import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
+import { Component, computed, DestroyRef, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import {
   FormControl,
   FormGroup,
@@ -35,6 +35,7 @@ import { PhoneValue } from '../../../auth/pages/register/interface/PhoneValue.in
     PhoneInputComponent,
   ],
   templateUrl: './contact-form.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactFormComponent {
   private readonly contactService = inject(ContactService);

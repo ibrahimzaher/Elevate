@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 import { ContactInfoCardComponent } from './components/contact-info-card/contact-info-card.component';
@@ -14,6 +14,7 @@ import { ContactInfoItem } from './interfaces/contact.interface';
     ContactFormComponent,
   ],
   templateUrl: './contact.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactComponent {
   readonly contactInfoItems: ReadonlyArray<ContactInfoItem> = [

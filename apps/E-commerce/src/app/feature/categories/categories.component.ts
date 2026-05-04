@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, signal } from '@angular/core';
+import { Component, DestroyRef, inject, signal, ChangeDetectionStrategy } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { TranslateModule } from '@ngx-translate/core';
 import { LayoutGrid, LucideAngularModule } from 'lucide-angular';
@@ -11,6 +11,7 @@ import { ProductsService } from '../products/services/product';
   selector: 'app-categories',
   imports: [TranslateModule, LucideAngularModule, TaxonomyCardComponent],
   templateUrl: './categories.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CategoriesComponent {
   private readonly productsService = inject(ProductsService);

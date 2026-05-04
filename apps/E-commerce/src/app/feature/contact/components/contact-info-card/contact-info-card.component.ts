@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, ChangeDetectionStrategy } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 import { TranslatePipe } from '@ngx-translate/core';
 
@@ -10,6 +10,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   },
   imports: [LucideAngularModule, TranslatePipe],
   templateUrl: './contact-info-card.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactInfoCardComponent {
   readonly icon = input.required<string>();

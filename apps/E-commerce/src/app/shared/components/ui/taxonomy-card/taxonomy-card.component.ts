@@ -1,12 +1,14 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, ChangeDetectionStrategy } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { Image, LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'app-taxonomy-card',
-  imports: [TranslatePipe, LucideAngularModule],
+  imports: [TranslatePipe, LucideAngularModule, NgOptimizedImage],
   templateUrl: './taxonomy-card.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaxonomyCardComponent {
   private readonly router = inject(Router);

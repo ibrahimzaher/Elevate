@@ -1,4 +1,5 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, inject } from '@angular/core';
+import { NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { ButtonComponent } from '@elevate/reusable-ui';
@@ -11,6 +12,7 @@ import { AboutValueCardComponent } from './components/about-value-card/about-val
   selector: 'app-about-us',
   standalone: true,
   imports: [
+    NgOptimizedImage,
     TranslateModule,
     RouterLink,
     ButtonComponent,
@@ -18,6 +20,7 @@ import { AboutValueCardComponent } from './components/about-value-card/about-val
     AboutValueCardComponent,
   ],
   templateUrl: './about-us.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AboutUsComponent {
   private readonly langService = inject(languageService);
