@@ -42,7 +42,9 @@ class InlineDialogRef extends DynamicDialogRef {
     <div class="bg-white dark:bg-zinc-900 rounded-lg">
       <ng-container [ngComponentOutlet]="activeComponent()"></ng-container>
     </div>
-    <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+    @defer {
+      <p-confirmDialog [style]="{width: '50vw'}"></p-confirmDialog>
+    }
   `,
 })
 export class ProfileAddressesComponent {
