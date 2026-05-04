@@ -61,6 +61,7 @@
     <img
       [ngSrc]="product().imgCover"
       fill
+      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
       [priority]="priorityImage()"
       [alt]="product().title"
       class="object-cover transition-transform duration-700 group-hover:scale-110"

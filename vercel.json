@@ -8,5 +8,13 @@
       "source": "/(.*)",
       "destination": "/"
     }
-  ]
+  ],
+  "images": {
+    "remotePatterns": [
+      {
+        "protocol": "https",
+        "hostname": "**"
+      }
+    ]
+  }
 }
