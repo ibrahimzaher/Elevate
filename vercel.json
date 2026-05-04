@@ -3,6 +3,17 @@
   "buildCommand": "npx ng build E-commerce",
   "installCommand": "npm install --legacy-peer-deps",
   "outputDirectory": "dist/apps/E-commerce/browser",
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "index, follow"
+        }
+      ]
+    }
+  ],
   "rewrites": [
     {
       "source": "/(.*)",

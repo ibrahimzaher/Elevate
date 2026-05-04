@@ -34,17 +34,18 @@ app.use(
     maxAge: '1y',
     index: false,
     redirect: false,
-  }),
+  })
 );
 
 /**
  * Handle all other requests by rendering the Angular application.
  */
 app.use('/**', (req, res, next) => {
+  res.setHeader('X-Robots-Tag', 'index, follow');
   angularApp
     .handle(req)
     .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next(),
+      response ? writeResponseToNodeResponse(response, res) : next()
     )
     .catch(next);
 });
