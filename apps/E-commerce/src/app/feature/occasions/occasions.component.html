@@ -48,7 +48,7 @@
         queryParamName="occasion"
         [queryParamValue]="occasion._id"
         [productsCount]="occasion.productsCount"
-        [priority]="isFirst"
+        [priority]="$index < 8"
         productsCountKey="OCCASIONS_PAGE.PRODUCTS_COUNT"
       ></app-taxonomy-card>
       }

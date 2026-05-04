@@ -49,7 +49,7 @@
         queryParamName="category"
         [queryParamValue]="category._id"
         [productsCount]="category.productsCount"
-        [priority]="isFirst"
+        [priority]="$index < 8"
         productsCountKey="CATEGORIES_PAGE.PRODUCTS_COUNT"
       ></app-taxonomy-card>
       }
