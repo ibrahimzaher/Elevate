@@ -9,16 +9,16 @@ export const profileRoutes: Routes = [
       {
         path: '',
         loadComponent: () =>
-          import('./components/my-account/my-account.component').then(
-            (m) => m.MyAccountComponent
+          import('@elevate/my-account').then(
+            (m) => m.MyAccount
           ),
       },
       {
         path: 'change-password',
         loadComponent: () =>
           import(
-            './components/change-password/change-password.component'
-          ).then((m) => m.ChangePasswordComponent),
+            '@elevate/change-password'
+          ).then((m) => m.ChangePassword),
       },
       {
         path: 'orders',

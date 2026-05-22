@@ -7,6 +7,7 @@ import { BaseInputComponent } from '../base/base-input.component';
 import { InputErrorComponent } from '../error/input-error.component';
 @Component({
   selector: 'lib-phone-input',
+  standalone: true,
   imports: [
     LucideAngularModule,
     CommonModule,
@@ -18,6 +19,7 @@ import { InputErrorComponent } from '../error/input-error.component';
   styleUrl: './phone-input.component.css',
 })
 export class PhoneInputComponent extends BaseInputComponent {
+  
   get formField(): FormControl {
     return (this.control as FormControl) || new FormControl();
   }

@@ -38,6 +38,18 @@ export const appRoutes: Route[] = [
       import('./feature/auth/auth.routes').then((m) => m.authRoutes),
   },
   {
+    path: 'my-account',
+    loadComponent() {
+      return import('@elevate/my-account').then((m) => m.MyAccount);
+    },
+  },
+  {
+    path: 'change-password',
+    loadComponent() {
+      return import('@elevate/change-password').then((m) => m.ChangePassword);
+    },
+  },
+  {
     path: 'unauthorized',
     data: {
       seo: unauthorizedSeo,
