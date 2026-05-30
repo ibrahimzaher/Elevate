@@ -2,7 +2,12 @@ import { environment } from '../../../../environments/environments';
 import { HttpClient, HttpContext, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ProductQueryParams, ProductsResponse, CategoriesRes, OccasionsRes } from '../interfaces/product';
+import {
+  ProductQueryParams,
+  ProductsResponse,
+  CategoriesRes,
+  OccasionsRes,
+} from '../interfaces/product';
 import { Product } from '../../../shared/components/ui/product-card/interface/product';
 import { ReviewResponse } from '../interfaces/review';
 import { RelatedProductsResponse } from '../interfaces/related';
@@ -70,6 +75,9 @@ export class ProductsService {
     return this.http.get<OccasionsRes>(
       `${this.baseUrl}/occasions?page=${page}&limit=${limit}`
     );
+  }
+  addOccasion(formData: FormData): Observable<any> {
+    return this.http.post(`${this.baseUrl}/occasions`, formData);
   }
 
   getCategories(page = 1, limit = 100): Observable<CategoriesRes> {
