@@ -1,4 +1,4 @@
-import { Component, DestroyRef, computed, inject, input, signal } from '@angular/core';
+import { Component, DestroyRef, computed, inject, input,output, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { TranslatePipe, TranslateService } from '@ngx-translate/core';
@@ -34,6 +34,9 @@ export class DashboardDataTableComponent {
 
   readonly config = input.required<DashboardTableConfig>();
   readonly data = input.required<unknown[] | null>();
+   readonly add = output<void>();
+  readonly edit = output<any>();
+  readonly delete = output<any>();
 
   readonly searchControl = new FormControl('', { nonNullable: true });
   readonly first = signal(0);
@@ -48,6 +51,7 @@ export class DashboardDataTableComponent {
     const term = this.searchTerm();
     const config = this.config();
     const rows = this.data() ?? [];
+
 
     if (!term) {
       return rows;

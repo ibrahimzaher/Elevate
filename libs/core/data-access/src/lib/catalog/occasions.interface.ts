@@ -1,6 +1,7 @@
 import { CatalogMetadata } from './catalog.interface';
 
 export interface Occasion {
+  id: any;
   _id: string;
   name: string;
   slug: string;
